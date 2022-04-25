@@ -280,7 +280,7 @@ include("product.php");
                                     </div>
                                 </div>
 
-                                <h2><a href="single-product3.php"><?php echo htmlspecialchars($row['productName']) ?></a></h2>
+                                <h2><a href="single-product3.php">Samsung Galaxy Note 10</a></h2>
                                 <div class="product-carousel-price">
                                     <ins>8.850.000 ₫</ins> <del>10.450.000 ₫</del>
                                 </div> 
@@ -364,7 +364,13 @@ include("product.php");
                         </div>
                         <div class="single-wid-product">
                             <a href="single-product3.php"><img src="img/p3-1.png" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product3.php"><?php echo htmlspecialchars($row['productName']) ?>  </a></h2>
+                            <h2><a href="single-product3.php">
+                                    <?php include 'product.php'; 
+                                      $row = $result->fetch_assoc();
+                                      echo $row['productName']
+                                    ?>  
+                                </a>
+                            </h2>
                             <div class="product-wid-rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -460,7 +466,7 @@ include("product.php");
                         </div>
                         <div class="single-wid-product">
                             <a href="single-product3.php"><img src="img/p3-1.png" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product3.php"><?php echo htmlspecialchars($row['productName']) ?>  </a></h2>
+                            <h2><a href="single-product3.php">Samsung Galaxy Note 10  </a></h2>
                             <div class="product-wid-rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>

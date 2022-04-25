@@ -175,7 +175,7 @@
                         <div class="product-upper">
                             <img src="img/p3-1.png" alt="">
                         </div>
-                        <h2><a href="single-product3.php"><?php echo htmlspecialchars($row['productName']) ?>  </a></h2>
+                        <h2><a href="single-product3.php">Samsung Galaxy Note 10  </a></h2>
                         <div class="product-carousel-price">
                             <ins>8.850.000 ₫</ins> <del>10.450.000 ₫</del>
                         </div>  
@@ -203,9 +203,73 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="single-shop-product">
                         <div class="product-upper">
+                            <img src="<?php include 'product.php'; $row = $result->fetch_assoc(); echo "img/p".$row['productID']."-1.png" ?>" alt="">
+                        </div>
+                        <h2><a href="single-product.php"><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productName'] ?></a></h2>
+                        <div class="product-carousel-price">
+                            <ins><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['buyPrice'] ?> ₫</ins> 
+                            <del><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['buyPrice']+2000000 ?> ₫</del>
+                        </div>  
+                        
+                        <div class="product-option-shop">
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                        </div>                       
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img src="<?php include 'product.php'; $row = $result->fetch_assoc(); echo "img/p".$row['productID']."-1.png" ?>" alt="">
+                        </div>
+                        <h2><a href="single-product.php"><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productName'] ?></a></h2>
+                        <div class="product-carousel-price">
+                            <ins><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['buyPrice'] ?> ₫</ins> 
+                            <del><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['buyPrice']+2000000 ?> ₫</del>
+                        </div>  
+                        
+                        <div class="product-option-shop">
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                        </div>                       
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img src="<?php include 'product.php'; $row = $result->fetch_assoc(); echo "img/p".$row['productID']."-1.png" ?>" alt="">
+                        </div>
+                        <h2><a href="single-product.php"><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productName'] ?></a></h2>
+                        <div class="product-carousel-price">
+                            <ins><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['buyPrice'] ?> ₫</ins> 
+                            <del><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['buyPrice']+2000000 ?> ₫</del>
+                        </div>  
+                        
+                        <div class="product-option-shop">
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                        </div>                       
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img src="<?php include 'product.php'; $row = $result->fetch_assoc(); echo "img/p".$row['productID']."-1.png" ?>" alt="">
+                        </div>
+                        <h2><a href="single-product.php"><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productName'] ?></a></h2>
+                        <div class="product-carousel-price">
+                            <ins><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['buyPrice'] ?> ₫</ins> 
+                            <del><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['buyPrice']+2000000 ?> ₫</del>
+                        </div>  
+                        
+                        <div class="product-option-shop">
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                        </div>                       
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
                             <img src="img/product-2.jpg" alt="">
                         </div>
-                        <h2><a href="single-product5.php">Here5</a></h2>
+                        <h2><a href="single-product.php">Here9</a></h2>
                         <div class="product-carousel-price">
                             <ins>$899.00</ins> <del>$999.00</del>
                         </div>  
@@ -220,7 +284,7 @@
                         <div class="product-upper">
                             <img src="img/product-1.jpg" alt="">
                         </div>
-                        <h2><a href="single-product6.php">Here6</a></h2>
+                        <h2><a href="single-product.php">Here10</a></h2>
                         <div class="product-carousel-price">
                             <ins>$899.00</ins> <del>$999.00</del>
                         </div>  
@@ -235,7 +299,7 @@
                         <div class="product-upper">
                             <img src="img/product-3.jpg" alt="">
                         </div>
-                        <h2><a href="single-product7.php">Here7</a></h2>
+                        <h2><a href="single-product.php">Here11</a></h2>
                         <div class="product-carousel-price">
                             <ins>$899.00</ins> <del>$999.00</del>
                         </div>  
@@ -250,67 +314,7 @@
                         <div class="product-upper">
                             <img src="img/product-4.jpg" alt="">
                         </div>
-                        <h2><a href="single-product8.php">Here8</a></h2>
-                        <div class="product-carousel-price">
-                            <ins>$899.00</ins> <del>$999.00</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/product-2.jpg" alt="">
-                        </div>
-                        <h2><a href="single-product9.php">Here9</a></h2>
-                        <div class="product-carousel-price">
-                            <ins>$899.00</ins> <del>$999.00</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/product-1.jpg" alt="">
-                        </div>
-                        <h2><a href="single-product10.php">Here10</a></h2>
-                        <div class="product-carousel-price">
-                            <ins>$899.00</ins> <del>$999.00</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/product-3.jpg" alt="">
-                        </div>
-                        <h2><a href="single-product11.php">Here11</a></h2>
-                        <div class="product-carousel-price">
-                            <ins>$899.00</ins> <del>$999.00</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/product-4.jpg" alt="">
-                        </div>
-                        <h2><a href="single-product12.php">Here12</a></h2>
+                        <h2><a href="single-product.php">Here12</a></h2>
                         <div class="product-carousel-price">
                             <ins>$899.00</ins> <del>$999.00</del>
                         </div>  

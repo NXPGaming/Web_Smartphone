@@ -162,15 +162,9 @@
                         </div>
                         <div class="thubmnail-recent">
                             <img src="img/p3-1.png" class="recent-thumb" alt="">
-                            <h2><a href="single-product3.php">
-                                <?php include 'product.php'; 
-                                  $row = $result->fetch_assoc();
-                                  echo $row['productName']
-                                  ?>
-                            </a></h2>
+                            <h2><a href="single-product3.php">Samsung Galaxy Note 10</a></h2>
                             <div class="product-sidebar-price">
-                                <ins>
-                                </ins> <del>10.450.000 ₫</del>
+                                <ins>8.850.000 ₫</ins> <del>10.450.000 ₫</del>
                             </div>                             
                         </div>
                         <div class="thubmnail-recent">
@@ -187,40 +181,55 @@
                         <ul>
                             <li><a href="single-product1.php">Realme GT Neo 2</a></li>
                             <li><a href="single-product2.php">IPhone 13 Pro Max</a></li>
-                            <li><a href="single-product3.php"><?php echo htmlspecialchars($row['productName']) ?>  </a></li>
+                            <li><a href="single-product3.php">Samsung Galaxy Note 10</a></li>
                             <li><a href="single-product4.php">Xiaomi Mi 11</a></li>
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="product-breadcroumb">
                             <a href="">Home</a>
                             <a href="">Category Name</a>
-                            <a href="">Realme GT Neo 2</a>
+                            <a href=""><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productName'] ?></a>
                         </div>
                         
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="product-images">
                                     <div class="product-main-img">
-                                        <a href="img/p1-1.png" target="_blank"><img src="img/p1-1.png" alt=""></a>
+                                        <a href="<?php include 'product.php'; $row = $result->fetch_assoc(); echo "img/p".$row['productID']."-1.png" ?>" target="_blank">
+                                            <img src= "<?php include 'product.php'; $row = $result->fetch_assoc(); echo "img/p".$row['productID']."-1.png" ?>">
+                                        </a>
                                     </div>
                                     
                                     <div class="product-gallery">
-                                        <a href="img/p1-2.png" target="_blank"><img src="img/p1-2.png" alt=""></a>
-                                        <a href="img/p1-3.png" target="_blank"><img src="img/p1-3.png" alt=""></a>
-                                        <a href="img/p1-4.png" target="_blank"><img src="img/p1-4.png" alt=""></a>
+                                        <a href="<?php include 'product.php'; $row = $result->fetch_assoc(); echo "img/p".$row['productID']."-2.png" ?>" target="_blank">
+                                            <img src="<?php include 'product.php'; $row = $result->fetch_assoc(); echo "img/p".$row['productID']."-2.png" ?>" alt="">
+                                        </a>
+                                        <a href="<?php include 'product.php'; $row = $result->fetch_assoc(); echo "img/p".$row['productID']."-3.png" ?>" target="_blank">
+                                            <img src="<?php include 'product.php'; $row = $result->fetch_assoc(); echo "img/p".$row['productID']."-3.png" ?>" alt="">
+                                        </a>
+                                        <a href="<?php include 'product.php'; $row = $result->fetch_assoc(); echo "img/p".$row['productID']."-4.png" ?>" target="_blank">
+                                            <img src="<?php include 'product.php'; $row = $result->fetch_assoc(); echo "img/p".$row['productID']."-4.png" ?>" alt="">
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="col-sm-6">
                                 <div class="product-inner">
-                                    <h2 class="product-name">Realme GT Neo 2</h2>
+                                    <!-- <h3>
+                                        <p><?php include 'product.php'; $row = $result->fetch_assoc();var_dump($result) ?></p>
+                                        <p><?php include 'product.php';$row = $result->fetch_assoc();var_dump($row) ?></p>
+                                    </h3>  -->
+                                    <h2 class="product-name">
+                                        <?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productName'] ?>
+                                    </h2>
                                     <div class="product-inner-price">
-                                        <ins>8.550.000 ₫</ins> <del>9.250.000 ₫</del>
+                                        <ins><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['buyPrice'] ?> ₫</ins> 
+                                        <del><?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['buyPrice']+2000000 ?> ₫</del>
                                     </div>    
                                     
                                     <form action="" class="cart">
@@ -231,7 +240,7 @@
                                     </form>   
                                     
                                     <div class="product-inner-category">
-                                        <p>Category: <a href="">Summer</a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>. </p>
+                                       <!--  <p>Category: <a href="">Summer</a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>. </p> -->
                                     </div> 
                                     
                                     <div role="tabpanel">
@@ -242,16 +251,15 @@
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade in active" id="home">
                                                 <h2>Product Description</h2>  
-                                                <p>Màn hình: </p>
-                                                <p>Hệ điều hành: </p>
-                                                <p>Camera sau: </p>
-                                                <p>Camera trước: </p>
-                                                <p>CPU: </p>
-                                                <p>RAM: </p>
-                                                <p>Bộ nhớ trong: </p>
-                                                <p>Thẻ SIM: </p>
-                                                <p>Dung lượng pin: </p>
-                                                <p>Thiết kế: </p>
+                                                <p>Screen: <?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productScreen'] ?></p>
+                                                <p>Operating system: <?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productOperatingSystem'] ?></p>
+                                                <p>Rear camera: <?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productRearCamera'] ?></p>
+                                                <p>Front camera: <?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productFrontCamera'] ?></p>
+                                                <p>CPU: <?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productCPU'] ?></p>
+                                                <p>RAM: <?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productRAM'] ?></p>
+                                                <p>Memory: <?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productMemory'] ?></p>
+                                                <p>SIM: <?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productSIM'] ?></p>
+                                                <p>Battery: <?php include 'product.php'; $row = $result->fetch_assoc(); echo $row['productBattery'] ?></p>
 
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="profile">
