@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Group4</title>
- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="./stylelogin.css">
+ 	
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+  <link rel="stylesheet" href='./login.css'>
 
 </head>
+
 <body>
-<!-- partial:index.partial.php -->
+<!-- partial:index.partial.html -->
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#">
+		<!-- <form action="#"> -->
 			<h1>Create Account</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -18,14 +21,17 @@
 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 			</div>
 			<span>or use your email for registration</span>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
-		</form>
+			<input type="text" id="name" placeholder="Name" />
+			<span id="notify-sign-up-name" class="notify"></span>
+			<input type="email" id="email" placeholder="Email" />
+			<span id="notify-sign-up-email" class="notify"></span>
+			<input type="password" id="password" placeholder="Password" />
+			<span id="notify-sign-up-password" class="notify"></span>
+			<button onclick="Sign_up()">Sign Up</button>
+		<!-- </form> -->
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="#">
+		<!-- <form action="#"> -->
 			<h1>Sign in</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -33,11 +39,12 @@
 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 			</div>
 			<span>or use your account</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
+			<input type="email" id= "email-sign-in" placeholder="Email" />
+			<input type="password" id = "password-sign-in" placeholder="Password" />
+			<span id="notify-login" class="notify"></span>
 			<a href="#">Forgot your password?</a>
-			<button><a href="home.php">Sign In</a></button>
-		</form>
+			<button onclick="Sign_in()">Sign In</button>
+		<!-- </form> -->
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
@@ -54,8 +61,7 @@
 		</div>
 	</div>
 </div>
-<!-- partial -->
   <script  src="./script.js"></script>
-
+  <script src="./login1.js"></script>
 </body>
 </html>
