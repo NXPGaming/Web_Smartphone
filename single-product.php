@@ -30,7 +30,7 @@
     <![endif]-->
   </head>
   <body>
-   
+   <?php $type = 5?>
     <div class="header-area">
         <div class="container">
             <div class="row">
@@ -188,7 +188,12 @@
                 </div>
                 <?php include 'product.php'; ?>
                 <div class="col-md-8">
-                    <?php $row = $result->fetch_assoc(); ?>
+                    <?php 
+                    $num = $_GET['myNumber'];
+                    $sql1 = "SELECT * FROM products WHERE productID = $num";
+                    $result1 = $con->query($sql1);
+                    $row = $result1->fetch_assoc(); 
+                    ?>
                     <div class="product-content-right">
                         <div class="product-breadcroumb">
                             <a href="">Home</a>
