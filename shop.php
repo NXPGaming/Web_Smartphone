@@ -111,11 +111,8 @@
                     <ul class="nav navbar-nav">
                         <li><a href="home.php">Home</a></li>
                         <li class="active"><a href="shop.php">Shop page</a></li>
-                        <li><a href="single-product.php">Single product</a></li>
                         <li><a href="cart.php">Cart</a></li>
                         <li><a href="checkout.php">Checkout</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
                         <li><a href="contact.php">My team</a></li>
                     </ul>
                 </div>  
@@ -208,51 +205,46 @@
                             <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
                         </div>
                         <h2> 
-                        <a href=<?php echo "single-product.php?myNumber={$row['productID']}" ?> ><?php echo $row['productName'] ?></a></h2>
+                            <a href=<?php echo "single-product.php?myNumber={$row['productID']}" ?> ><?php echo $row['productName'] ?></a>
+                        </h2>
                         <div class="product-carousel-price">
                             <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
                             <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
                         </div>  
-                        
                         <div class="product-option-shop">
                             <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
                         </div>                       
                     </div>
                 </div>
                 <?php } ?>               
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-pagination text-center">
-                        <nav>
-                          <ul class="pagination">
-                            <li>
-                              <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                              </a>
-                            </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                              <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </nav>                        
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-
-
+    <div class="row">
+        <div class="col-md-12">
+            <div class="product-pagination text-center">
+                <nav>
+                  <ul class="pagination">
+                    <li>
+                      <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                      <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>                        
+            </div>
+        </div>
+    </div>
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
         <div class="container">

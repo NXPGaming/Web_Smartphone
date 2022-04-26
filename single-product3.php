@@ -114,11 +114,8 @@ include("product.php");
                     <ul class="nav navbar-nav">
                         <li><a href="home.php">Home</a></li>
                         <li><a href="shop.php">Shop page</a></li>
-                        <li class="active"><a href="single-product.php">Single product</a></li>
                         <li><a href="cart.php">Cart</a></li>
                         <li><a href="checkout.php">Checkout</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
                         <li><a href="contact.php">My team</a></li>
                     </ul>
                 </div>  
@@ -170,7 +167,7 @@ include("product.php");
                         </div>
                         <div class="thubmnail-recent">
                             <img src="img/p3-1.png" class="recent-thumb" alt="">
-                            <h2><a href="single-product3.php"><?php echo htmlspecialchars($row['productName']) ?>  </a></h2>
+                            <h2><a href="single-product3.php">Samsung Galaxy Note 10  </a></h2>
                             <div class="product-sidebar-price">
                                 <ins>8.850.000 ₫</ins> <del>10.450.000 ₫</del>
                             </div>                             
@@ -189,7 +186,7 @@ include("product.php");
                         <ul>
                             <li><a href="single-product1.php">Realme GT Neo 2</a></li>
                             <li><a href="single-product2.php">IPhone 13 Pro Max</a></li>
-                            <li><a href="single-product3.php"><?php echo htmlspecialchars($row['productName']) ?>  </a></li>
+                            <li><a href="single-product3.php">Samsung Galaxy Note 10  </a></li>
                             <li><a href="single-product4.php">Xiaomi Mi 11</a></li>
                         </ul>
                     </div>
@@ -200,7 +197,7 @@ include("product.php");
                         <div class="product-breadcroumb">
                             <a href="">Home</a>
                             <a href="">Category Name</a>
-                            <a href=""><?php echo htmlspecialchars($row['productName']) ?>  </a>
+                            <a href="">Samsung Galaxy Note 10  </a>
                         </div>
                         
                         <div class="row">
@@ -220,7 +217,7 @@ include("product.php");
                             
                             <div class="col-sm-6">
                                 <div class="product-inner">
-                                    <h2 class="product-name"><?php echo htmlspecialchars($row['productName']) ?>  </h2>
+                                    <h2 class="product-name">Samsung Galaxy Note 10  </h2>
                                     <div class="product-inner-price">
                                         <ins>8.850.000 ₫</ins> <del>10.450.000 ₫</del>
                                     </div>    
@@ -324,7 +321,7 @@ include("product.php");
                                         </div>
                                     </div>
 
-                                    <h2><a href="single-product3.php"><?php echo htmlspecialchars($row['productName']) ?>  </a></h2>
+                                    <h2><a href="single-product3.php">Samsung Galaxy Note 10  </a></h2>
                                     <div class="product-carousel-price">
                                         <ins>8.850.000 ₫</ins> <del>10.450.000 ₫</del>
                                     </div> 
