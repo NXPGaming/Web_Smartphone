@@ -201,8 +201,8 @@
                     </div>
                 </div>
                 <?php include "product.php" ?>
+                <?php while($row = $result->fetch_assoc()) { ?>
                 <div class="col-md-3 col-sm-6">
-                    <?php $row = $result->fetch_assoc(); ?>
                     <div class="single-shop-product">
                         <div class="product-upper">
                             <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
@@ -218,119 +218,7 @@
                         </div>                       
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <?php $row = $result->fetch_assoc(); ?>
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
-                        </div>
-                        <h2><a href="single-product.php"><?php echo $row['productName'] ?></a></h2>
-                        <div class="product-carousel-price">
-                            <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
-                            <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <?php $row = $result->fetch_assoc(); ?>
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
-                        </div>
-                        <h2><a href="single-product.php"><?php echo $row['productName'] ?></a></h2>
-                        <div class="product-carousel-price">
-                            <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
-                            <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <?php $row = $result->fetch_assoc(); ?>
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
-                        </div>
-                        <h2><a href="single-product.php"><?php echo $row['productName'] ?></a></h2>
-                        <div class="product-carousel-price">
-                            <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
-                            <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <?php $row = $result->fetch_assoc(); ?>
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
-                        </div>
-                        <h2><a href="single-product.php"><?php echo $row['productName'] ?></a></h2>
-                        <div class="product-carousel-price">
-                            <ins><?php echo $row['buyPrice'] ?> đ</ins> <del><?php echo $row['buyPrice'] + 2000000 ?> đ</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <?php $row = $result->fetch_assoc(); ?>
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
-                        </div>
-                        <h2><a href="single-product.php"><?php echo $row['productName'] ?></a></h2>
-                        <div class="product-carousel-price">
-                            <ins><?php echo $row['buyPrice'] ?> đ</ins> <del><?php echo $row['buyPrice'] + 2000000 ?> đ</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <?php $row = $result->fetch_assoc(); ?>
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
-                        </div>
-                        <h2><a href="single-product.php"><?php echo $row['productName'] ?></a></h2>
-                        <div class="product-carousel-price">
-                            <ins><?php echo $row['buyPrice'] ?> đ</ins> <del><?php echo $row['buyPrice'] + 2000000 ?> đ</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <?php $row = $result->fetch_assoc(); ?>
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
-                        </div>
-                        <h2><a href="single-product.php"><?php echo $row['productName'] ?></a></h2>
-                        <div class="product-carousel-price">
-                            <ins><?php echo $row['buyPrice'] ?> đ</ins> <del><?php echo $row['buyPrice'] + 2000000 ?> đ</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
+                <?php } ?>               
                     </div>
                 </div>
             </div>
