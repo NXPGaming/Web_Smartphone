@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.carousel.  css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
 
@@ -115,11 +115,22 @@
                         <li><a href="checkout.php">Checkout</a></li>
                         <li><a href="contact.php">My team</a></li>
                     </ul>
+                    <div class="shopping-item" style="padding: 0px; border: 0px; margin-top: 6px;">
+                            <form action = <?php echo "search.php?"?>>
+                                <input type="text" name = "searchWord" placeholder="Search products...">
+                                <input type="submit" value="Search">
+                            </form>
+                    </div>
                 </div>  
             </div>
         </div>
+        
+        
+        
     </div> <!-- End mainmenu area -->
+
     
+
     <div class="product-big-title-area">
         <div class="container">
             <div class="row">
@@ -131,7 +142,9 @@
             </div>
         </div>
     </div>
+
     
+                    
     
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>

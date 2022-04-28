@@ -117,6 +117,12 @@ include("product.php");
                         <li><a href="checkout.php">Checkout</a></li>
                         <li><a href="contact.php">My team</a></li>
                     </ul>
+                    <div class="shopping-item" style="padding: 0px; border: 0px; margin-top: 6px;">
+                            <form action = <?php echo "search.php?"?>>
+                                <input type="text" name = "searchWord" placeholder="Search products...">
+                                <input type="submit" value="Search">
+                            </form>
+                    </div>
                 </div>  
             </div>
         </div>
