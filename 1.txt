@@ -1,0 +1,7 @@
+- vào thư mục chứa xampp sau vào apache -> conf -> httpd.conf 
+- tìm <Directory "C:/xampp/htdocs"> .... </Directory> 
+- copy nó sau dán nó sau </Directory> 
+- sau đó sửa chỗ "C:/xampp/htdocs" thành cái mà thư mục php trong Web_Smartphone
+- tiếp theo tìm <IfModule alias_module> 
+- sau ghi dòng bên trong <IfModule alias_module> này Alias "/web" "C:/Users/asus/Documents/CNPM/BTL/Web_Smartphone" (-> đây là thư mục chứa .php của mk của mn thì khác) trước </IfModule>
+rồi bật apache và sql trong xampp lên, nhấn admin sql rồi vào http://localhost:8080/web 

@@ -138,58 +138,43 @@
                         <form action="">
                             <input type="text" placeholder="Search products...">
                             <input type="submit" value="Search">
-                        </form>
+                        </form> 
                     </div>
                     
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Products</h2>
-                        <div class="thubmnail-recent">
-                            <img src="img/p1-1.png" class="recent-thumb" alt="">
-                            <h2><a href="single-product1.php">Realme GT Neo 2</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>8.550.000 ₫</ins> <del>9.250.000 ₫</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/p2-1.png" class="recent-thumb" alt="">
-                            <h2><a href="single-product2.php">IPhone 13 Pro Max</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>28.950.000 ₫</ins> <del>30.450.000 ₫</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/p3-1.png" class="recent-thumb" alt="">
-                            <h2><a href="single-product3.php">Samsung Galaxy Note 10</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>8.850.000 ₫</ins> <del>10.450.000 ₫</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/p4-1.png" class="recent-thumb" alt="">
-                            <h2><a href="single-product4.php">Xiaomi Mi 11</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>12.250.000 ₫</ins> <del>12.950.000 ₫</del>
-                            </div>                             
-                        </div>
+                        <?php include "product.php" ?>
+                        <?php while($row = $result->fetch_assoc()) { ?>
+                            <?php if($row['productID'] >4 and $row['productID'] <9) { ?>
+                                <div class="thubmnail-recent">
+                                    <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" class="recent-thumb" alt="">
+                                    <h2><a href=<?php echo "single-product.php?myNumber={$row['productID']}" ?> ><?php echo $row['productName'] ?></a></h2>
+                                    <div class="product-sidebar-price">
+                                        <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
+                                        <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
+                                    </div>                             
+                                </div>
+                            <?php } ?>
+                        <?php } ?>    
                     </div>
                     
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Recent Posts</h2>
-                        <ul>
-                            <li><a href="single-product1.php">Realme GT Neo 2</a></li>
-                            <li><a href="single-product2.php">IPhone 13 Pro Max</a></li>
-                            <li><a href="single-product3.php">Samsung Galaxy Note 10</a></li>
-                            <li><a href="single-product4.php">Xiaomi Mi 11</a></li>
-                        </ul>
+                        <?php include "product.php" ?>
+                        <?php while($row = $result->fetch_assoc() and $row['productID'] <5) { ?>
+                            <ul>
+                                <li><a href=<?php echo "single-product.php?myNumber={$row['productID']}" ?> ><?php echo $row['productName'] ?></a></li>  
+                            </ul>
+                        <?php } ?>    
                     </div>
                 </div>
                 <?php include 'product.php'; ?>
                 <div class="col-md-8">
                     <?php 
-                    $num = $_GET['myNumber'];
-                    $sql1 = "SELECT * FROM products WHERE productID = $num";
-                    $result1 = $con->query($sql1);
-                    $row = $result1->fetch_assoc(); 
+                        $num = $_GET['myNumber'];
+                        $sql1 = "SELECT * FROM products WHERE productID = $num";
+                        $result1 = $con->query($sql1);
+                        $row = $result1->fetch_assoc(); 
                     ?>
                     <div class="product-content-right">
                         <div class="product-breadcroumb">
@@ -296,62 +281,25 @@
                         <div class="related-products-wrapper">
                             <h2 class="related-products-title">Related Products</h2>
                             <div class="related-products-carousel">
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img src="img/p1-1.png" alt="">
-                                        <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                        </div>
-                                    </div>
+                                <?php include "product.php" ?>
+                                <?php while($row = $result->fetch_assoc()) { ?>
 
-                                    <h2><a href="single-product1.php">Realme GT Neo 2</a></h2>
-                                    <div class="product-carousel-price">
-                                        <ins>8.550.000 ₫</ins> <del>9.250.000 ₫</del>
-                                    </div> 
-                                </div>
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img src="img/p2-1.png" alt="">
-                                        <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                    <div class="single-product">
+                                        <div class="product-f-image">
+                                            <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
+                                            <div class="product-hover">
+                                                <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                                <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <h2><a href="single-product2.php">IPhone 13 Pro Max</a></h2>
-                                    <div class="product-carousel-price">
-                                        <ins>28.950.000 ₫</ins> <del>30.450.000 ₫</del>
-                                    </div> 
-                                </div>
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img src="img/p3-1.png" alt="">
-                                        <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                        </div>
-                                    </div>
-
-                                    <h2><a href="single-product3.php"><?php echo htmlspecialchars($row['productName']) ?>  </a></h2>
-                                    <div class="product-carousel-price">
-                                        <ins>8.850.000 ₫</ins> <del>10.450.000 ₫</del>
-                                    </div> 
-                                </div>
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img src="img/p4-1.png" alt="">
-                                        <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                        </div>
-                                    </div>
-
-                                    <h2><a href="single-product4.php">Xiaomi Mi 11</a></h2>
-                                    <div class="product-carousel-price">
-                                        <ins>12.250.000 ₫</ins> <del>12.950.000 ₫</del>
-                                    </div> 
-                                </div>                                 
+                                        <h2><a href=<?php echo "single-product.php?myNumber={$row['productID']}" ?>><?php echo $row['productName'] ?></a></h2>
+                                        <div class="product-carousel-price">
+                                            <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
+                                            <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
+                                        </div> 
+                                    </div>   
+                                <?php } ?>                             
                             </div>
                         </div>
 
