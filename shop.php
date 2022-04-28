@@ -144,8 +144,8 @@
                             <div class="product-upper">
                                 <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
                             </div>
-                            <h2> 
-                                <a href=<?php echo "single-product.php?myNumber={$row['productID']}" ?> ><?php echo $row['productName'] ?></a>
+                            <h2>
+                                <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><?php echo $row['productName'] ?></a>
                             </h2>
                             <div class="product-carousel-price">
                                 <ins><?php echo $row['buyPrice'] ?> ₫</ins> 

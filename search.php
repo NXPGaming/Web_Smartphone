@@ -137,85 +137,27 @@
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/p1-1.png" alt="">
-                        </div>
-                        <h2><a href="single-product1.php">Realme GT Neo 2</a></h2>
-                        <div class="product-carousel-price">
-                            <ins>8.550.000 ₫</ins> <del>9.250.000 ₫</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/p2-1.png" alt="">
-                        </div>
-                        <h2><a href="single-product2.php">IPhone 13 Pro Max</a></h2>
-                        <div class="product-carousel-price">
-                            <ins>28.950.000 ₫</ins> <del>30.450.000 ₫</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/p3-1.png" alt="">
-                        </div>
-                        <h2><a href="single-product3.php">Samsung Galaxy Note 10  </a></h2>
-                        <div class="product-carousel-price">
-                            <ins>8.850.000 ₫</ins> <del>10.450.000 ₫</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/p4-1.png" alt="">
-                        </div>
-                        <h2><a href="single-product4.php">Xiaomi Mi 11</a></h2>
-                        <div class="product-carousel-price">
-                            <ins>12.250.000 ₫</ins> <del>12.950.000 ₫</del>
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>                       
-                    </div>
-                </div>
                 <?php include "product.php" ?>
                 <?php while($row = $result->fetch_assoc()) { ?>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="single-shop-product">
-                            <div class="product-upper">
-                                <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
+                    <?php if(str_contains($row['productName'], $_GET['searchWord'])) { ?>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="single-shop-product">
+                                <div class="product-upper">
+                                    <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
+                                </div>
+                                <h2>
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><?php echo $row['productName'] ?></a>
+                                </h2>
+                                <div class="product-carousel-price">
+                                    <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
+                                    <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
+                                </div>  
+                                <div class="product-option-shop">
+                                    <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                                </div>                       
                             </div>
-                            <h2> 
-                                <a href=<?php echo "single-product.php?myNumber={$row['productID']}" ?> ><?php echo $row['productName'] ?></a>
-                            </h2>
-                            <div class="product-carousel-price">
-                                <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
-                                <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
-                            </div>  
-                            <div class="product-option-shop">
-                                <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                            </div>                       
                         </div>
-                    </div>
+                    <?php } ?>
                 <?php } ?>               
             </div>
         </div>
