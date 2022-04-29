@@ -145,7 +145,9 @@
             <div class="row">
                 <?php include "product.php" ?>
                 <?php while($row = $result->fetch_assoc()) { ?>
-                    <?php if(str_contains($row['productName'], $_GET['searchWord'])) { ?>
+                    <?php $input_Word =  $_GET['searchWord'];
+                          $input_SQL = $row['productName']; ?>
+                    <?php if(str_contains(strtolower($input_SQL), strtolower($input_Word))) { ?>
                         <div class="col-md-3 col-sm-6">
                             <div class="single-shop-product">
                                 <div class="product-upper">
