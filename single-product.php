@@ -178,8 +178,7 @@
                     ?>
                     <div class="product-content-right">
                         <div class="product-breadcroumb">
-                            <a href="">Home</a>
-                            <a href="">Category Name</a>
+                            <a href="home.php">Home</a>
                             <a href=""><?php echo $row['productName'] ?></a>
                         </div>
                         
