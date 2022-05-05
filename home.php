@@ -37,6 +37,48 @@ include("product.php");
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        * {box-sizing: border-box}
+        .mySlides1, .mySlides2 {display: none}
+        img {vertical-align: middle;}
+
+        /* Slideshow container */
+        .slideshow-container {
+          max-width: 1140px;
+          position: relative;
+          margin: auto;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          width: auto;
+          padding: 16px;
+          margin-top: -22px;
+          color: white;
+          font-weight: bold;
+          font-size: 18px;
+          transition: 0.6s ease;
+          border-radius: 0 3px 3px 0;
+          user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+          right: 0;
+          border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a grey background color */
+        .prev:hover, .next:hover {
+          background-color: #f1f1f1;
+          color: black;
+        }
+    </style>
+
   </head>
   <body>
    
@@ -59,7 +101,7 @@ include("product.php");
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
                             <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
+                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">VND </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">USD</a></li>
                                     <li><a href="#">INR</a></li>
@@ -128,25 +170,49 @@ include("product.php");
             </div>
         </div>
     </div> <!-- End mainmenu area -->
-    
-    <div class="slider-area">
-        <div class="block-slider block-slider4">
-            <ul class="" id="bxslider-home4">
-                <li>
-                    <img src="img/slide1.png" alt="Slide">
-                </li>
-                <li>
-                    <img src="img/slide2.png" alt="Slide">
-                </li>
-                <li>
-                    <img src="img/slide3.png" alt="Slide">
-                </li>
-                <li>
-                    <img src="img/slide4.png" alt="Slide">
-                </li>
-            </ul>
-        </div>
-    </div> <!-- End slider area -->
+
+    <div class="slideshow-container">
+      <div class="mySlides1">
+        <img src="img/slide1.png" style="width:100%">
+      </div>
+
+      <div class="mySlides1">
+        <img src="img/slide2.png" style="width:100%">
+      </div>
+
+      <div class="mySlides1">
+        <img src="img/slide3.png" style="width:100%">
+      </div>
+      <div class="mySlides1">
+        <img src="img/slide4.png" style="width:100%">
+      </div>
+
+      <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+    </div>
+
+    <script>
+        let slideIndex = [1,1];
+        let slideId = ["mySlides1", "mySlides2"]
+        showSlides(1, 0);
+        showSlides(1, 1);
+
+        function plusSlides(n, no) {
+          showSlides(slideIndex[no] += n, no);
+        }
+
+        function showSlides(n, no) {
+          let i;
+          let x = document.getElementsByClassName(slideId[no]);
+          if (n > x.length) {slideIndex[no] = 1}    
+          if (n < 1) {slideIndex[no] = x.length}
+          for (i = 0; i < x.length; i++) {
+             x[i].style.display = "none";  
+          }
+          x[slideIndex[no]-1].style.display = "block";  
+        }
+    </script>
+    <!-- End slider area -->
     
     <div class="promo-area">
         <div class="zigzag-bottom"></div>
@@ -180,124 +246,49 @@ include("product.php");
         </div>
     </div> <!-- End promo area -->
     
-    <div class="maincontent-area">
+    <div class="maincontent-area" style="padding: 0px;">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="latest-product">
-                        <h2 class="section-title">Latest Products</h2>
-                        <div class="product-carousel">
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/p1-1.png" alt="">
-                                    <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
+                <h2 class="section-title">Latest Products</h2>
+                <?php include "product.php" ?>
+                <?php while($row = $result->fetch_assoc()) { ?>
+                    <?php if($row['productID']>4 and $row['productID'] <9) { ?>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="single-shop-product">
+                                <div class="product-upper">
+                                    <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
                                 </div>
-
-                                <h2><a href="single-product1.php">Realme GT Neo 2</a></h2>
+                                <h2>
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><?php echo $row['productName'] ?></a>
+                                </h2>
                                 <div class="product-carousel-price">
-                                    <ins>8.550.000 ₫</ins> <del>9.250.000 ₫</del>
-                                </div> 
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/p4-1.png" alt="">
-                                    <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-
-                                <h2><a href="single-product4.php">Xiaomi Mi 11</a></h2>
-                                <div class="product-carousel-price">
-                                    <ins>12.250.000 ₫</ins> <del>12.950.000 ₫</del>
-                                </div> 
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/p2-1.png" alt="">
-                                    <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-
-                                <h2><a href="single-product2.php">IPhone 13 Pro Max</a></h2>
-                                <div class="product-carousel-price">
-                                    <ins>28.950.000 ₫</ins> <del>30.450.000 ₫</del>
-                                </div> 
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/p3-1.png" alt="">
-                                    <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-
-                                <h2><a href="single-product3.php">Samsung Galaxy Note 10</a></h2>
-                                <div class="product-carousel-price">
-                                    <ins>8.850.000 ₫</ins> <del>10.450.000 ₫</del>
-                                </div> 
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/p4-3.png" alt="">
-                                    <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-
-                                <h2><a href="single-product4.php">Xiaomi Mi 11</a></h2>
-                                <div class="product-carousel-price">
-                                    <ins>12.250.000 ₫</ins> <del>12.950.000 ₫</del>
-                                </div> 
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/p4-4.png" alt="">
-                                    <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-
-                                <h2><a href="single-product4.php">Xiaomi Mi 11</a></h2>
-                                <div class="product-carousel-price">
-                                    <ins>12.250.000 ₫</ins> <del>12.950.000 ₫</del>
-                                </div> 
+                                    <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
+                                    <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
+                                </div>  
+                                <div class="product-option-shop">
+                                    <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                                </div>                       
                             </div>
                         </div>
-                    </div>
-                </div>
+                    <?php } ?>
+                <?php } ?>               
             </div>
         </div>
     </div> <!-- End main content area -->
     
     <div class="brands-area">
-        <div class="zigzag-bottom"></div>
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="brand-wrapper">
-                        <div class="brand-list">
-                            <img src="img/brand1.png" alt="">
-                            <img src="img/brand2.png" alt="">
-                            <img src="img/brand3.png" alt="">
-                            <img src="img/brand4.png" alt="">
-                            <img src="img/brand5.png" alt="">
-                            <img src="img/brand6.png" alt="">               
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End brands area -->
+            <img src="img/brand10.png" alt="" style="width: 150px">
+            <img src="img/brand11.png" alt="" style="width: 150px">
+            <img src="img/brand12.png" alt="" style="width: 150px">
+            <img src="img/brand13.png" alt="" style="width: 150px">
+            <img src="img/brand14.png" alt="" style="width: 150px">  
+            <img src="img/brand15.png" alt="" style="width: 150px">      
+            <img src="img/brand16.png" alt="" style="width: 150px">     
+          </div>
+    </div> 
+    <!-- End brands area -->
     
     <div class="product-widget-area">
         <div class="zigzag-bottom"></div>
@@ -307,150 +298,78 @@ include("product.php");
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Top Sellers</h2>
                         <a href="shop.php" class="wid-view-more">View All</a>
-                        <div class="single-wid-product">
-                            <a href="single-product1.php"><img src="img/p1-1.png" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product1.php">Realme GT Neo 2</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>8.550.000 ₫</ins> <del>9.250.000 ₫</del>
-                            </div>                            
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product3.php"><img src="img/p3-1.png" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product3.php">
-                                    <?php include 'product.php'; 
-                                      $row = $result->fetch_assoc();
-                                      echo $row['productName']
-                                    ?>  
-                                </a>
-                            </h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>8.850.000 ₫</ins> <del>10.450.000 ₫</del>
-                            </div>                            
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product2.php"><img src="img/p2-1.png" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product2.php">IPhone 13 Pro Max</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>28.950.000 ₫</ins> <del>30.450.000 ₫</del>
-                            </div>                            
-                        </div>
+                        <?php include "product.php" ?>
+                        <?php while($row = $result->fetch_assoc()) { ?>
+                            <?php if($row['productID']==7 or $row['productID']==3 or $row['productID']==2) { ?>
+                                <div class="single-wid-product">
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="" class="product-thumb"></a>
+                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><?php echo $row['productName'] ?></a></h2>
+                                    <div class="product-wid-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product-wid-price">
+                                        <ins><?php echo $row['buyPrice'] ?> ₫</ins> <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
+                                    </div>                            
+                                </div>
+                            <?php } ?>  
+                        <?php } ?>   
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Recently Viewed</h2>
                         <a href="shop.php" class="wid-view-more">View All</a>
-                        <div class="single-wid-product">
-                            <a href="single-product4.php"><img src="img/p4-3.png" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product4.php">Xiaomi Mi 11</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>12.250.000 ₫</ins> <del>12.950.000 ₫</del>
-                            </div>                            
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product4.php"><img src="img/p4-2.png" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product4.php">Xiaomi Mi 11</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>12.250.000 ₫</ins> <del>12.950.000 ₫</del>
-                            </div>                            
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product4.php"><img src="img/p4-4.png" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product4.php">Xiaomi Mi 11</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>12.250.000 ₫</ins> <del>12.950.000 ₫</del>
-                            </div>                            
-                        </div>
+                        
+                        <?php include "product.php" ?>
+                        <?php while($row = $result->fetch_assoc()) { ?>
+                            <?php if($row['productID']>10 or $row['productID'] <2) { ?>
+                                <div class="single-wid-product">
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="" class="product-thumb"></a>
+                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><?php echo $row['productName'] ?></a></h2>
+                                    <div class="product-wid-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product-wid-price">
+                                        <ins><?php echo $row['buyPrice'] ?> ₫</ins> <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
+                                    </div>                            
+                                </div>
+                            <?php } ?>  
+                        <?php } ?>
+                        
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Top New</h2>
                         <a href="shop.php" class="wid-view-more">View All</a>
-                        <div class="single-wid-product">
-                            <a href="single-product2.php"><img src="img/p2-1.png" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product2.php">IPhone 13 Pro Max</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>28.950.000 ₫</ins> <del>30.450.000 ₫</del>
-                            </div>                            
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product3.php"><img src="img/p3-1.png" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product3.php">Samsung Galaxy Note 10  </a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>8.850.000 ₫</ins> <del>10.450.000 ₫</del>
-                            </div>                            
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product1.php"><img src="img/p1-1.png" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product1.php">Realme GT Neo 2</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>8.550.000 ₫</ins> <del>9.250.000 ₫</del>
-                            </div>                            
-                        </div>
+                        <?php include "product.php" ?>
+                        <?php while($row = $result->fetch_assoc()) { ?>
+                            <?php if($row['productID']>3 and $row['productID'] <7) { ?>
+                                <div class="single-wid-product">
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="" class="product-thumb"></a>
+                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><?php echo $row['productName'] ?></a></h2>
+                                    <div class="product-wid-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product-wid-price">
+                                        <ins><?php echo $row['buyPrice'] ?> ₫</ins> <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
+                                    </div>                            
+                                </div>
+                            <?php } ?>  
+                        <?php } ?>
+                        
                     </div>
                 </div>
             </div>

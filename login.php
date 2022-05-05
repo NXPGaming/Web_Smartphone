@@ -36,9 +36,9 @@
 				<span id="notify-sign-up-phoneNumber" class="notify"></span>
 				<input type="text" id="address" name="address" placeholder="Address" />
 				<span id="notify-sign-up-address" class="notify"></span>
-				<!-- <button type="submit" onclick="Sign_up()">Sign Up</button> -->
-				<input type="submit" value="Sign Up">
+				<button onclick="Sign_up()">Sign Up</button>
 			</form>
+
 		<!-- </form> -->
 	</div>
 	<div class="form-container sign-in-container">
@@ -50,11 +50,17 @@
 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 			</div>
 			<span>or use your account</span>
-			<input type="email" id= "email-sign-in" placeholder="Email" />
-			<input type="password" id = "password-sign-in" placeholder="Password" />
-			<span id="notify-login" class="notify"></span>
-			<a href="#">Forgot your password?</a>
-			<button onclick="Sign_in()">Sign In</button>
+
+			<form action="checkLogin.php" method="post">
+				<input type="email" name="email1" id= "email-sign-in" placeholder="Email" />
+				<input type="password" name="password1" id = "password-sign-in" placeholder="Password" />
+				<span id="notify-login" class="notify"></span>
+				<br/>
+				<a href="#">Forgot your password?</a>
+				<br/>
+				<br/>
+				<button >Sign In</button>
+			</form>
 		<!-- </form> -->
 	</div>
 	<div class="overlay-container">
@@ -76,31 +82,3 @@
   <script src="./login1.js"></script>
 </body>
 </html>
-
-<?php
-    // $con = mysqli_connect('localhost', 'root', '','group4','3307');
-    // if(!$con){
-    //     die('Could not Connect MySql Server:' .mysql_error());
-    // }
-              
-    // // Taking all 5 values from the form data(input)
-    // $name =  $_REQUEST['name1'];
-      
-    // $i1 = "SELECT customerID FROM customers ORDER BY customerID DESC LIMIT 1";
-    // $i2 = $con->query($i1);
-    // $i3 = $i2->fetch_assoc();
-    // $i4 = (int)$i3['customerID']+1;
-
-    // $sql = "INSERT INTO customers (customerID , customerName,   email, password,    phone, address)
-    //                                 VALUES ($i4,'$name', 'huy', '123123', '123', '123')";
-
-    // if ($con->query($sql) === TRUE) {
-    //   echo "New record created successfully";
-      
-    // } else {
-    //   echo "Error: " . $sql . "<br>" . $con->error;
-    // }
-      
-    // // Close connection
-    // mysqli_close($con);
-?>

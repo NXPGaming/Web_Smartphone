@@ -39,6 +39,6 @@ function Sign_up(){
         error_address.innerHTML = "*Address is required.";    
     }
     if(name && email && password && phoneNumber && address) {
-        location.href = 'home.php';
+        location.href = 'login.php';
     }
 }
