@@ -206,35 +206,50 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="cart_item">
-                                            <td class="product-remove">
-                                                <a title="Remove this item" class="remove" href="#">×</a> 
-                                            </td>
+                                        <?php
+                                            $con = mysqli_connect('localhost', 'root', '','group4','3307');
+                                            if(!$con){
+                                                die('Could not Connect MySql Server:' .mysql_error());
+                                            }
+                                            $orderCode = 1;
+                                            $customerID = 1;
+                                            $a1 = "SELECT * from orders, (SELECT productID, productName, buyPrice from products) as product 
+                                                   WHERE product.productID = orders.productID and orders.orderCode = $orderCode and orders.customerID = $customerID";
+                                            $a2 = $con->query($a1);
+                                            while($row = $a2->fetch_assoc()) { ?>
+                                                <tr class="cart_item">
+                                                    <td class="product-remove">
+                                                        <a title="Remove this item" class="remove" href="#">×</a> 
+                                                    </td>
 
-                                            <td class="product-thumbnail">
-                                                <a href="single-product.php"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/product-thumb-2.jpg"></a>
-                                            </td>
+                                                    <td class="product-thumbnail">
+                                                        <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" >
+                                                            <img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<?php echo "img/p".$row['productID']."-1.png" ?>">
+                                                        </a>
+                                                    </td>
 
-                                            <td class="product-name">
-                                                <a href="single-product.php">Ship Your Idea</a> 
-                                            </td>
+                                                    <td class="product-name">
+                                                        <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" >
+                                                            <?php echo $row['productName'] ?>
+                                                        </a> 
+                                                    </td>
 
-                                            <td class="product-price">
-                                                <span class="amount">£15.00</span> 
-                                            </td>
+                                                    <td class="product-price">
+                                                        <span class="amount"><?php echo $row['buyPrice'] ?> ₫</span> 
+                                                    </td>
 
-                                            <td class="product-quantity">
-                                                <div class="quantity buttons_added">
-                                                    <input type="button" class="minus" value="-">
-                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" min="0" step="1">
-                                                    <input type="button" class="plus" value="+">
-                                                </div>
-                                            </td>
+                                                    <td class="product-quantity">
+                                                        <div class="quantity buttons_added">
+                                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="<?php echo $row['quantityOrdered'] ?>" min="0" step="1">
+                                                        </div>
 
-                                            <td class="product-subtotal">
-                                                <span class="amount">£15.00</span> 
-                                            </td>
-                                        </tr>
+                                                    <td class="product-subtotal">
+                                                        <span class="amount"><?php echo $row['buyPrice']*$row['quantityOrdered'] ?> ₫</span> 
+                                                    </td>
+                                                </tr>
+                                            <?php }
+                                        ?>
+                                        
                                         <tr>
                                             <td class="actions" colspan="6">
                                                 <div class="coupon">
