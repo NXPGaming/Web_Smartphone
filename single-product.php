@@ -220,9 +220,10 @@
                                         <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
                                     </div>    
                                     
-                                    <form action="" class="cart">
+                                    <form class="cart" action = <?php echo "addToCart.php?"?>>
                                         <div class="quantity">
-                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                            <input name = "quantity" type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                            <input name = "productId" value="<?php echo $row['productID'] ?>" style="display: none;">
                                         </div>
                                         <button class="add_to_cart_button" type="submit">Add to cart</button>
                                     </form>   
