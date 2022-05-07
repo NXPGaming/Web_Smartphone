@@ -1,6 +1,8 @@
 
 <?php
 include("product.php");
+$orderCode = $_GET['orderCode'];
+$customerID = $_GET['customerID'];
 ?>
 <!DOCTYPE html>
 <!--
@@ -88,10 +90,8 @@ include("product.php");
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.php"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="checkout.php"><i class="fa fa-user"></i> Checkout</a></li>
+                            <li><a href=<?php echo "cart.php?customerID={$customerID}&orderCode={$orderCode}"?>><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href=<?php echo "checkout.php?customerID={$customerID}&orderCode={$orderCode}"?>><i class="fa fa-user"></i> Checkout</a></li>
                             <li><a href="login.php"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>
@@ -128,13 +128,13 @@ include("product.php");
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="./"><img src="img/logo.png"></a></h1>
+                        <h1><img src="img/logo.png"></h1>
                     </div>
                 </div>
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.php">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href=<?php echo "cart.php?customerID={$customerID}&orderCode={$orderCode}"?>>Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -154,15 +154,17 @@ include("product.php");
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="home.php">Home</a></li>
-                        <li><a href="shop.php">Shop page</a></li>
-                        <li><a href="cart.php">Cart</a></li>
-                        <li><a href="checkout.php">Checkout</a></li>
+                        <li class="active"><a href=<?php echo "home.php?customerID={$customerID}&orderCode={$orderCode}" ?>>Home</a></li>
+                        <li><a href=<?php echo "shop.php?customerID={$customerID}&orderCode={$orderCode}" ?>>Shop page</a></li>
+                        <li><a href=<?php echo "cart.php?customerID={$customerID}&orderCode={$orderCode}" ?>>Cart</a></li>
+                        <li><a href=<?php echo "checkout.php?customerID={$customerID}&orderCode={$orderCode}" ?>>Checkout</a></li>
                         <li><a href="contact.php">My team</a></li>
                     </ul>
                     <div class="shopping-item" style="padding: 0px; border: 0px; margin-top: 6px;">
-                            <form action = <?php echo "search.php?"?>>
+                            <form action = <?php echo "search.php" ?>>
                                 <input type="text" name = "searchWord" placeholder="Search products...">
+                                <input type="number" style="display: none;" name="orderCode" value=<?php echo $orderCode ?>>
+                                <input type="number" style="display: none;" name="customerID" value=<?php echo $customerID ?>>
                                 <input type="submit" value="Search">
                             </form>
                     </div>
@@ -255,19 +257,22 @@ include("product.php");
                 <?php while($row = $result->fetch_assoc()) { ?>
                     <?php if($row['productID']>4 and $row['productID'] <9) { ?>
                         <div class="col-md-3 col-sm-6">
-                            <div class="single-shop-product">
+                            <div class="single-shop-product" style="text-align: center;">
                                 <div class="product-upper">
-                                    <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
+                                        <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
+                                    </a>
                                 </div>
                                 <h2>
-                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><?php echo $row['productName'] ?></a>
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" ><?php echo $row['productName'] ?></a>
                                 </h2>
                                 <div class="product-carousel-price">
                                     <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
                                     <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
                                 </div>  
                                 <div class="product-option-shop">
-                                    <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                                    <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" style="padding-left: 50px; padding-right: 50px; border-radius:20px;"
+                                    href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>">Select</a>
                                 </div>                       
                             </div>
                         </div>
@@ -297,13 +302,17 @@ include("product.php");
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Top Sellers</h2>
-                        <a href="shop.php" class="wid-view-more">View All</a>
+                        <a class="wid-view-more" href=<?php echo "shop.php?customerID={$customerID}&orderCode={$orderCode}" ?>>View All</a>
                         <?php include "product.php" ?>
                         <?php while($row = $result->fetch_assoc()) { ?>
                             <?php if($row['productID']==7 or $row['productID']==3 or $row['productID']==2) { ?>
                                 <div class="single-wid-product">
-                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="" class="product-thumb"></a>
-                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><?php echo $row['productName'] ?></a></h2>
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
+                                        <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="" class="product-thumb">
+                                    </a>
+                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
+                                        <?php echo $row['productName'] ?>
+                                    </a></h2>
                                     <div class="product-wid-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -322,14 +331,18 @@ include("product.php");
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Recently Viewed</h2>
-                        <a href="shop.php" class="wid-view-more">View All</a>
+                        <a class="wid-view-more" href=<?php echo "shop.php?customerID={$customerID}&orderCode={$orderCode}" ?>>View All</a>
                         
                         <?php include "product.php" ?>
                         <?php while($row = $result->fetch_assoc()) { ?>
                             <?php if($row['productID']>10 or $row['productID'] <2) { ?>
                                 <div class="single-wid-product">
-                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="" class="product-thumb"></a>
-                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><?php echo $row['productName'] ?></a></h2>
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
+                                        <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="" class="product-thumb">
+                                    </a>
+                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
+                                        <?php echo $row['productName'] ?>     
+                                    </a></h2>
                                     <div class="product-wid-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -349,13 +362,15 @@ include("product.php");
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Top New</h2>
-                        <a href="shop.php" class="wid-view-more">View All</a>
+                        <a class="wid-view-more" href=<?php echo "shop.php?customerID={$customerID}&orderCode={$orderCode}" ?>>View All</a>
                         <?php include "product.php" ?>
                         <?php while($row = $result->fetch_assoc()) { ?>
                             <?php if($row['productID']>3 and $row['productID'] <7) { ?>
                                 <div class="single-wid-product">
-                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="" class="product-thumb"></a>
-                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" ><?php echo $row['productName'] ?></a></h2>
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
+                                        <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="" class="product-thumb">
+                                    </a>
+                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" ><?php echo $row['productName'] ?></a></h2>
                                     <div class="product-wid-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -397,11 +412,8 @@ include("product.php");
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">User Navigation </h2>
                         <ul>
-                            <li><a href="#">My account</a></li>
-                            <li><a href="#">Order history</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a href="#">Vendor contact</a></li>
-                            <li><a href="#">Front page</a></li>
+                            <li><a href="contact.php">Vendor contact</a></li>
+                            <li><a href="">Front page</a></li>
                         </ul>                        
                     </div>
                 </div>
@@ -411,10 +423,7 @@ include("product.php");
                         <h2 class="footer-wid-title">Categories</h2>
                         <ul>
                             <li><a href="#">Mobile Phone</a></li>
-                            <li><a href="#">Home accesseries</a></li>
-                            <li><a href="#">LED TV</a></li>
-                            <li><a href="#">Computer</a></li>
-                            <li><a href="#">Gadets</a></li>
+                            <li><a href="#">Smart Phone</a></li>
                         </ul>                        
                     </div>
                 </div>

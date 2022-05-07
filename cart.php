@@ -1,3 +1,8 @@
+<?php
+include("product.php");
+$orderCode = $_GET['orderCode'];
+$customerID = $_GET['customerID'];
+?>
 <!DOCTYPE html>
 <!--
 	ustora by freshdesignweb.com
@@ -42,10 +47,8 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.php"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="checkout.php"><i class="fa fa-user"></i> Checkout</a></li>
+                            <li><a href=<?php echo "cart.php?customerID={$customerID}&orderCode={$orderCode}"?>><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href=<?php echo "checkout.php?customerID={$customerID}&orderCode={$orderCode}"?>><i class="fa fa-user"></i> Checkout</a></li>
                             <li><a href="login.php"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>
@@ -83,13 +86,13 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="./"><img src="img/logo.png"></a></h1>
+                        <h1><img src="img/logo.png"></h1>
                     </div>
                 </div>
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.php">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href=<?php echo "cart.php?customerID={$customerID}&orderCode={$orderCode}"?>>Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -109,10 +112,10 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="home.php">Home</a></li>
-                        <li><a href="shop.php">Shop page</a></li>
-                        <li class="active"><a href="cart.php">Cart</a></li>
-                        <li><a href="checkout.php">Checkout</a></li>
+                        <li><a href=<?php echo "home.php?customerID={$customerID}&orderCode={$orderCode}" ?>>Home</a></li>
+                        <li><a href=<?php echo "shop.php?customerID={$customerID}&orderCode={$orderCode}" ?>>Shop page</a></li>
+                        <li class="active"><a href=<?php echo "cart.php?customerID={$customerID}&orderCode={$orderCode}" ?>>Cart</a></li>
+                        <li><a href=<?php echo "checkout.php?customerID={$customerID}&orderCode={$orderCode}" ?>>Checkout</a></li>
                         <li><a href="contact.php">My team</a></li>
                     </ul>
                 </div>  
@@ -142,54 +145,43 @@
                         <h2 class="sidebar-title">Search Products</h2>
                             <form action = <?php echo "search.php?"?>>
                                 <input type="text" name = "searchWord" placeholder="Search products...">
+                                <input type="number" style="display: none;" name="orderCode" value=<?php echo $orderCode ?>>
+                                <input type="number" style="display: none;" name="customerID" value=<?php echo $customerID ?>>
                                 <input type="submit" value="Search">
                             </form>
                     </div>
                     
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Products</h2>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.php">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.php">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.php">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.php">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
+                        <?php include "product.php" ?>
+                        <?php while($row = $result->fetch_assoc()) { ?>
+                            <?php if($row['productID'] >4 and $row['productID'] <9) { ?>
+                                <div class="thubmnail-recent">
+                                    <a href=<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?> >
+                                        <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" class="recent-thumb" alt="">
+                                    </a>
+                                    <h2><a href=<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?> ><?php echo $row['productName'] ?></a></h2>
+                                    <div class="product-sidebar-price">
+                                        <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
+                                        <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
+                                    </div>                             
+                                </div>
+                            <?php } ?>
+                        <?php } ?>    
                     </div>
                     
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Recent Posts</h2>
-                        <ul>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                        </ul>
+                        <?php include "product.php" ?>
+                        <?php while($row = $result->fetch_assoc() and $row['productID'] <5) { ?>
+                            <ul>
+                                <li><a href=<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?> ><?php echo $row['productName'] ?></a></li>  
+                            </ul>
+                        <?php } ?>    
                     </div>
                 </div>
                 
+                <?php $cartTotal = 0; ?>
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
@@ -211,25 +203,24 @@
                                             if(!$con){
                                                 die('Could not Connect MySql Server:' .mysql_error());
                                             }
-                                            $orderCode = 1;
-                                            $customerID = 1;
                                             $a1 = "SELECT * from orders, (SELECT productID, productName, buyPrice from products) as product 
                                                    WHERE product.productID = orders.productID and orders.orderCode = $orderCode and orders.customerID = $customerID";
                                             $a2 = $con->query($a1);
                                             while($row = $a2->fetch_assoc()) { ?>
                                                 <tr class="cart_item">
                                                     <td class="product-remove">
-                                                        <a title="Remove this item" class="remove" href="#">×</a> 
+                                                        <a title="Remove this item" class="remove" 
+                                                        href="<?php echo "removePFC.php?orderCode={$row['orderCode']}&customerID={$row['customerID']}&productID={$row['productID']}" ?>" >×</a> 
                                                     </td>
 
                                                     <td class="product-thumbnail">
-                                                        <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" >
+                                                        <a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
                                                             <img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<?php echo "img/p".$row['productID']."-1.png" ?>">
                                                         </a>
                                                     </td>
 
                                                     <td class="product-name">
-                                                        <a href="<?php echo "single-product.php?myNumber={$row['productID']}" ?>" >
+                                                        <a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
                                                             <?php echo $row['productName'] ?>
                                                         </a> 
                                                     </td>
@@ -240,17 +231,19 @@
 
                                                     <td class="product-quantity">
                                                         <div class="quantity buttons_added">
-                                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="<?php echo $row['quantityOrdered'] ?>" min="0" step="1">
+                                                            <input type="text" size="1" readonly="readonly" value="<?php echo $row['quantityOrdered'] ?>" >
+                                                            <!-- <input type="number" size="4" class="input-text qty text" title="Qty" value="1" min="0" step="1"> -->
                                                         </div>
 
                                                     <td class="product-subtotal">
                                                         <span class="amount"><?php echo $row['buyPrice']*$row['quantityOrdered'] ?> ₫</span> 
+                                                        <?php $cartTotal += $row['buyPrice']*$row['quantityOrdered']; ?>
                                                     </td>
                                                 </tr>
                                             <?php }
                                         ?>
                                         
-                                        <tr>
+<!--                                         <tr>
                                             <td class="actions" colspan="6">
                                                 <div class="coupon">
                                                     <label for="coupon_code">Coupon:</label>
@@ -260,7 +253,7 @@
                                                 <input type="submit" value="Update Cart" name="update_cart" class="button">
                                                 <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </form>
@@ -271,25 +264,23 @@
                             <div class="cross-sells">
                                 <h2>You may be interested in...</h2>
                                 <ul class="products">
-                                    <li class="product">
-                                        <a href="single-product.php">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-2.jpg">
-                                            <h3>Ship Your Idea</h3>
-                                            <span class="price"><span class="amount">£20.00</span></span>
-                                        </a>
-
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.php">Select options</a>
-                                    </li>
-
-                                    <li class="product">
-                                        <a href="single-product.php">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-4.jpg">
-                                            <h3>Ship Your Idea</h3>
-                                            <span class="price"><span class="amount">£20.00</span></span>
-                                        </a>
-
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.php">Select options</a>
-                                    </li>
+                                    <?php include "product.php" ?>
+                                    <?php while($row = $result->fetch_assoc()) { ?>
+                                        <?php if ($row['productID']==1 or $row['productID']==7) { ?>
+                                            <li class="product" style="text-align: center;">
+                                                <a href=<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>>
+                                                    <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="<?php echo "img/p".$row['productID']."-1.png" ?>">
+                                                    <h3><?php echo $row['productName'] ?></h3>
+                                                    <span class="price"><span class="amount">
+                                                        <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
+                                                        <del><?php echo $row['buyPrice']+2000000 ?> ₫</del>
+                                                    </span></span>
+                                                </a>
+                                                <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" 
+                                                href=<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>>Select</a>
+                                            </li>
+                                        <?php } ?>
+                                    <?php } ?>  
                                 </ul>
                             </div>
 
@@ -301,7 +292,7 @@
                                     <tbody>
                                         <tr class="cart-subtotal">
                                             <th>Cart Subtotal</th>
-                                            <td><span class="amount">£15.00</span></td>
+                                            <td><span class="amount"><?php echo $cartTotal ?> ₫</span></td>
                                         </tr>
 
                                         <tr class="shipping">
@@ -311,14 +302,16 @@
 
                                         <tr class="order-total">
                                             <th>Order Total</th>
-                                            <td><strong><span class="amount">£15.00</span></strong> </td>
+                                            <td><strong><span class="amount"><?php echo $cartTotal ?> ₫</span></strong> </td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <br/>
+                                <a  href=<?php echo "checkout.php?customerID={$customerID}&orderCode={$orderCode}" ?>> <button style="width: 300px;" type="submit"> CHECKOUT </button> </a>
                             </div>
 
 
-                            <form method="post" action="#" class="shipping_calculator">
+<!--                             <form method="post" action="#" class="shipping_calculator">
                                 <h2><a class="shipping-calculator-button" data-toggle="collapse" href="#calcalute-shipping-wrap" aria-expanded="false" aria-controls="calcalute-shipping-wrap">Calculate Shipping</a></h2>
 
                                 <section id="calcalute-shipping-wrap" class="shipping-calculator-form collapse">
@@ -581,7 +574,7 @@
                                 <p><button class="button" value="1" name="calc_shipping" type="submit">Update Totals</button></p>
 
                                 </section>
-                            </form>
+                            </form> -->
 
 
                             </div>
@@ -614,11 +607,8 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">User Navigation </h2>
                         <ul>
-                            <li><a href="#">My account</a></li>
-                            <li><a href="#">Order history</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a href="#">Vendor contact</a></li>
-                            <li><a href="#">Front page</a></li>
+                            <li><a href="contact.php">Vendor contact</a></li>
+                            <li><a href="">Front page</a></li>
                         </ul>                        
                     </div>
                 </div>
@@ -628,10 +618,7 @@
                         <h2 class="footer-wid-title">Categories</h2>
                         <ul>
                             <li><a href="#">Mobile Phone</a></li>
-                            <li><a href="#">Home accesseries</a></li>
-                            <li><a href="#">LED TV</a></li>
-                            <li><a href="#">Computer</a></li>
-                            <li><a href="#">Gadets</a></li>
+                            <li><a href="#">Smart Phone</a></li>
                         </ul>                        
                     </div>
                 </div>

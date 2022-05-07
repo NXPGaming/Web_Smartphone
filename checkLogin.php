@@ -27,12 +27,16 @@
             if($email != "" and $password != "") {
                 $check = 0;
 
-                $q1 = "SELECT email, password FROM customers";
+                $q1 = "SELECT customerID, email, password FROM customers";
                 $q2 = $con->query($q1);
                 while($q3 = $q2->fetch_assoc()) {
                     if($q3['email'] == $email) {
                         if($q3['password'] == $password) {
-                            ?> <meta http-equiv="refresh" content="0;url=home.php"> <?php
+                            $i1 = "SELECT orderCode FROM orders ORDER BY orderCode DESC LIMIT 1";
+                            $i2 = $con->query($i1);
+                            $i3 = $i2->fetch_assoc();
+                            $i4 = (int)$i3['orderCode']+1;
+                            ?> <meta http-equiv="refresh" content="0;url=<?php echo "home.php?customerID={$q3['customerID']}&orderCode={$i4}" ?>"> <?php
                         }else{
                             echo "Wrong password.";
                             ?> <meta http-equiv="refresh" content="0.5;url=login.php"> <?php
