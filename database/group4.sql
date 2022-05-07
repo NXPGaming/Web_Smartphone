@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 28, 2022 lúc 10:54 AM
+-- Thời gian đã tạo: Th5 07, 2022 lúc 04:43 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.10
 
@@ -30,21 +30,23 @@ SET time_zone = "+00:00";
 CREATE TABLE `customers` (
   `customerID` int(11) NOT NULL,
   `customerName` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `phone` varchar(10) NOT NULL,
   `address` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Cấu trúc bảng cho bảng `login`
+-- Đang đổ dữ liệu cho bảng `customers`
 --
 
-CREATE TABLE `login` (
-  `ID` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `l_password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `customers` (`customerID`, `customerName`, `email`, `password`, `phone`, `address`) VALUES
+(1, 'a', 'quanghuy19239@gmail.com', 'dsaf', '134', 'Thi tran Cho'),
+(2, 'q', 'a@v', 'qrew', 'rqew', '1234'),
+(3, 'ư', 'quanghuy14219@gmail.com', 'a', 'f', 'Thi tran Cho'),
+(4, 'q', 'c@c', 'a', 's', 'd'),
+(5, 'f', 'd@a', 'd', 's', 's'),
+(6, 'a', 'a@a', 'a', 'a', 'a');
 
 -- --------------------------------------------------------
 
@@ -59,6 +61,21 @@ CREATE TABLE `orders` (
   `orderDate` date NOT NULL,
   `quantityOrdered` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `orders`
+--
+
+INSERT INTO `orders` (`orderCode`, `customerID`, `productID`, `orderDate`, `quantityOrdered`) VALUES
+(1, 1, 2, '2022-05-07', 1),
+(1, 1, 5, '2022-05-07', 1),
+(1, 1, 6, '2022-05-06', 6),
+(1, 1, 7, '2022-05-07', 4),
+(1, 1, 8, '2022-05-07', 2),
+(2, 6, 1, '2022-05-07', 1),
+(2, 6, 7, '2022-05-07', 2),
+(3, 6, 1, '2022-05-07', 1),
+(3, 6, 2, '2022-05-07', 4);
 
 -- --------------------------------------------------------
 
@@ -88,7 +105,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`productID`, `productName`, `productImage`, `buyPrice`, `productScreen`, `productOperatingSystem`, `productRearCamera`, `productFrontCamera`, `productCPU`, `productRAM`, `productMemory`, `productSIM`, `productBattery`) VALUES
 (1, 'Realme GT Neo 2', 'p1', 8550000, 'Full HD+ (1080 x 2400 pixels), 20:9 (~398 ppi)', 'Android 11, Realme UI 2.0', '64 MP, f/1.8, PDAF', '16 MP, f/2.5, 26mm', ' Qualcomm SM8250-AC Snapdragon 870 5G (7 nm)', '6-8GB', '128-256GB', '2 SIM', 'Li-Po 5000 mAh'),
-(2, 'IPhone 13 Pro Max', 'p2', 28950000, '6.7 inches (1284 x 2778 pixels)', 'iOS 15', '12 MP, f/1.5, 26mm, dual pixel PDAF, sensor-shift OIS', '12 MP, f/2.2, 23mm', ' Apple A15 Bionic (5 nm)', '6GB', '128GB-1TB NVMe', ' 2 SIM (1 eSIM)', 'Li-Ion 4352 mAh'),
+(2, 'iPhone 13 Pro Max', 'p2', 28950000, '6.7 inches (1284 x 2778 pixels)', 'iOS 15', '12 MP, f/1.5, 26mm, dual pixel PDAF, sensor-shift OIS', '12 MP, f/2.2, 23mm', ' Apple A15 Bionic (5 nm)', '6GB', '128GB-1TB NVMe', ' 2 SIM (1 eSIM)', 'Li-Ion 4352 mAh'),
 (3, 'Samsung Galaxy Note 10', 'p3', 8850000, 'Dynamic AMOLED, QHD (1440 x 3040 pixels), 6.8 inches, Corning Gorilla Glass 6, HDR10+', 'Android 9.0 (Pie); One UI', '4 Camera: 12 MP + 12 MP (telephoto) + 16 MP + TOF 3D VGA camera', '10 MP', ' Exynos 9825 (7 nm)', '12GB', '256GB - 512GB', ' 1 Sim', '4300 mAh, 45W'),
 (4, 'Xiaomi Mi 11', 'p4', 12250000, 'AMOLED, 1 tỷ màu, 6.81 inches, 120Hz, HDR10+, (1440 x 3200 pixels)', 'Android 11, MIUI 12.5', '108 MP, f/1.9 , 26mm, 1/1.33\", 0.8µm', '20 MP, 27mm , 1/3.4\", 0.8µm', 'Qualcomm Snapdragon 888 (5 nm)', ' 8-12GB', '128-256GB UFS 3.1', '2 SIM, Nano SIM', 'Li-Po 4600 mAh'),
 (5, 'OPPO Reno7', 'p5', 9450000, '6.43 inches - Full HD+', 'Android 11 - ColorOS 12', '64 MP', '32 MP', 'MediaTek MT6877 Dimensity 900 5G', '8GB', '256GB', '2 SIM', 'Li-Po 4500 mAh'),
@@ -109,12 +126,6 @@ INSERT INTO `products` (`productID`, `productName`, `productImage`, `buyPrice`, 
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`customerID`);
-
---
--- Chỉ mục cho bảng `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`ID`);
 
 --
 -- Chỉ mục cho bảng `orders`

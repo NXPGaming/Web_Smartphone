@@ -2,6 +2,21 @@
 include("product.php");
 $orderCode = $_GET['orderCode'];
 $customerID = $_GET['customerID'];
+
+$con = mysqli_connect('localhost', 'root', '','group4','3307');
+if(!$con){
+    die('Could not Connect MySql Server:' .mysql_error());
+}
+$a1 = "SELECT * from orders, (SELECT productID, productName, buyPrice from products) as product 
+       WHERE product.productID = orders.productID and orders.orderCode = $orderCode and orders.customerID = $customerID";
+$a2 = $con->query($a1);
+$total = 0;
+$numProduct = 0;
+while($row = $a2->fetch_assoc()) {
+    $total += $row['buyPrice']*$row['quantityOrdered'];
+    $numProduct += 1;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,7 +102,11 @@ $customerID = $_GET['customerID'];
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href=<?php echo "cart.php?customerID={$customerID}&orderCode={$orderCode}"?>>Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href=<?php echo "cart.php?customerID={$customerID}&orderCode={$orderCode}"?>>Cart - <span class="cart-amunt">
+                            <?php echo $total ?> ₫
+                        </span> <i class="fa fa-shopping-cart"></i> <span class="product-count">
+                            <?php echo $numProduct ?>
+                        </span></a>
                     </div>
                 </div>
             </div>
