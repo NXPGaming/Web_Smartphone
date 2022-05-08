@@ -1001,7 +1001,7 @@ while($row = $a2->fetch_assoc()) {
                                     </div>
                                 </div>
                             </form>
-                            <a href="contact.php">
+                            <a href=<?php echo "checkoutSuccess.php?customerID={$customerID}&orderCode={$orderCode}" ?>>
                                 <button type="submit">
                                     Place order
                                 </button>
