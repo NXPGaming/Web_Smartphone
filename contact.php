@@ -50,7 +50,7 @@ body {font-family: "Lato", sans-serif}
     <img src="./wallpapers/1.png" style="width:100%">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
       <h3>Nguyễn Đình Chính</h3>
-      <p><b>20021307</b></p>   
+      <p><b>20021307</b></p> 
     </div>
   </div>
   <div class="mySlides w3-display-container w3-center">
@@ -164,8 +164,18 @@ How could people not love such a device? It's the most full-featured useful devi
 </div>
 
 <!-- Image of location/map -->
-<img src="/w3images/map.jpg" class="w3-image w3-greyscale-min" style="width:100%">
+<img src="./wallpapers/2.png" class="w3-image w3-greyscale-min" style="width:100%">
 
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
 
 <script>
 // Automatic Slideshow - change image every 4 seconds
