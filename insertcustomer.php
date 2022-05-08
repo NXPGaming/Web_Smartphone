@@ -17,6 +17,7 @@
             $name =  $_REQUEST['name'];
             $email =  $_REQUEST['email'];
             $password =  $_REQUEST['password'];
+            $rewritePassword =  $_REQUEST['rewritePassword'];
             $phoneNumber =  $_REQUEST['phoneNumber'];
             $address =  $_REQUEST['address'];
 
@@ -29,13 +30,19 @@
             if($password == "") {
                 echo "Password is required.<br>";
             }
+            if($rewritePassword == "") {
+                echo "You need to rewrite your password.<br>";
+            }
             if($phoneNumber == "") {
                 echo "Phone number is required.<br>";
             }
             if($address == "") {
                 echo "Address is required.<br>";
             }
-            if($name != "" and $email != "" and $password != "" and $phoneNumber != "" and $address != "") {
+            if($password != $rewritePassword) {
+                echo "You have re-entered the wrong password.<br>";
+            }
+            if($name != "" and $email != "" and $password != "" and $phoneNumber != "" and $address != "" and $rewritePassword != "" and $password == $rewritePassword) {
                 $check = 1;
 
                 $q1 = "SELECT email FROM customers";

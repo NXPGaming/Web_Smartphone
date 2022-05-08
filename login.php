@@ -32,6 +32,7 @@
 				<span id="notify-sign-up-email" class="notify"></span>
 				<input type="password" id="password" name="password" placeholder="Password" />
 				<span id="notify-sign-up-password" class="notify"></span>
+				<input type="password" id="rewritePassword" name="rewritePassword" placeholder="Rewrite your password" />
 				<input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" />
 				<span id="notify-sign-up-phoneNumber" class="notify"></span>
 				<input type="text" id="address" name="address" placeholder="Address" />
