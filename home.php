@@ -109,8 +109,10 @@ while($row = $a2->fetch_assoc()) {
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href=<?php echo "cart.php?customerID={$customerID}&orderCode={$orderCode}"?>><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href=<?php echo "checkout.php?customerID={$customerID}&orderCode={$orderCode}"?>><i class="fa fa-user"></i> Checkout</a></li>
+                            <li><a href=<?php echo "cart.php?"?> <?php if ($customerID != 0) {
+                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href=<?php echo "checkout.php"?> <?php if ($customerID != 0) {
+                            echo "?customerID={$customerID}&orderCode={$orderCode}";}?>><i class="fa fa-user"></i> Checkout</a></li>
                             <li><a href="login.php"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>
@@ -153,7 +155,8 @@ while($row = $a2->fetch_assoc()) {
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href=<?php echo "cart.php?customerID={$customerID}&orderCode={$orderCode}"?>>Cart - <span class="cart-amunt">
+                        <a href=<?php echo "cart.php?"?> <?php if ($customerID != 0) {
+                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>>Cart - <span class="cart-amunt">
                             <?php echo $total ?> ₫
                         </span> <i class="fa fa-shopping-cart"></i> <span class="product-count">
                             <?php echo $numProduct ?>
@@ -177,10 +180,14 @@ while($row = $a2->fetch_assoc()) {
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href=<?php echo "home.php?customerID={$customerID}&orderCode={$orderCode}" ?>>Home</a></li>
-                        <li><a href=<?php echo "shop.php?customerID={$customerID}&orderCode={$orderCode}" ?>>Shop page</a></li>
-                        <li><a href=<?php echo "cart.php?customerID={$customerID}&orderCode={$orderCode}" ?>>Cart</a></li>
-                        <li><a href=<?php echo "checkout.php?customerID={$customerID}&orderCode={$orderCode}" ?>>Checkout</a></li>
+                        <li class="active"><a href=<?php echo "home.php?"?> <?php if ($customerID != 0) {
+                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>>Home</a></li>
+                        <li><a href=<?php echo "shop.php?"?> <?php if ($customerID != 0) {
+                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>>Shop page</a></li>
+                        <li><a href=<?php echo "cart.php?"?> <?php if ($customerID != 0) {
+                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>>Cart</a></li>
+                        <li><a href=<?php echo "checkout.php?"?> <?php if ($customerID != 0) {
+                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>>Checkout</a></li>
                         <li><a href="contact.php">My team</a></li>
                     </ul>
                     <div class="shopping-item" style="padding: 0px; border: 0px; margin-top: 6px;">
@@ -282,12 +289,14 @@ while($row = $a2->fetch_assoc()) {
                         <div class="col-md-3 col-sm-6">
                             <div class="single-shop-product" style="text-align: center;">
                                 <div class="product-upper">
-                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}"?> <?php if ($customerID != 0) {
+                            echo "&customerID={$customerID}&orderCode={$orderCode}";}?>" >
                                         <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="">
                                     </a>
                                 </div>
                                 <h2>
-                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" ><?php echo $row['productName'] ?></a>
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}"?> <?php if ($customerID != 0) {
+                            echo "&customerID={$customerID}&orderCode={$orderCode}";}?>" ><?php echo $row['productName'] ?></a>
                                 </h2>
                                 <div class="product-carousel-price">
                                     <ins><?php echo $row['buyPrice'] ?> ₫</ins> 
@@ -295,7 +304,8 @@ while($row = $a2->fetch_assoc()) {
                                 </div>  
                                 <div class="product-option-shop">
                                     <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" style="padding-left: 50px; padding-right: 50px; border-radius:20px;"
-                                    href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>">Select</a>
+                                    href="<?php echo "single-product.php?myNumber={$row['productID']}"?> <?php if ($customerID != 0) {
+                            echo "&customerID={$customerID}&orderCode={$orderCode}";}?>">Select</a>
                                 </div>                       
                             </div>
                         </div>
@@ -325,15 +335,18 @@ while($row = $a2->fetch_assoc()) {
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Top Sellers</h2>
-                        <a class="wid-view-more" href=<?php echo "shop.php?customerID={$customerID}&orderCode={$orderCode}" ?>>View All</a>
+                        <a class="wid-view-more" href=<?php echo "shop.php?"?> <?php if ($customerID != 0) {
+                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>>View All</a>
                         <?php include "product.php" ?>
                         <?php while($row = $result->fetch_assoc()) { ?>
                             <?php if($row['productID']==7 or $row['productID']==3 or $row['productID']==2) { ?>
                                 <div class="single-wid-product">
-                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}"?> <?php if ($customerID != 0) {
+                            echo "&customerID={$customerID}&orderCode={$orderCode}";}?>" >
                                         <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="" class="product-thumb">
                                     </a>
-                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
+                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}"?> <?php if ($customerID != 0) {
+                            echo "&customerID={$customerID}&orderCode={$orderCode}";}?>" >
                                         <?php echo $row['productName'] ?>
                                     </a></h2>
                                     <div class="product-wid-rating">
@@ -354,16 +367,19 @@ while($row = $a2->fetch_assoc()) {
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Recently Viewed</h2>
-                        <a class="wid-view-more" href=<?php echo "shop.php?customerID={$customerID}&orderCode={$orderCode}" ?>>View All</a>
+                        <a class="wid-view-more" href=<?php echo "shop.php?"?> <?php if ($customerID != 0) {
+                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>>View All</a>
                         
                         <?php include "product.php" ?>
                         <?php while($row = $result->fetch_assoc()) { ?>
                             <?php if($row['productID']>10 or $row['productID'] <2) { ?>
                                 <div class="single-wid-product">
-                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}"?> <?php if ($customerID != 0) {
+                            echo "&customerID={$customerID}&orderCode={$orderCode}";}?>" >
                                         <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="" class="product-thumb">
                                     </a>
-                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
+                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}"?> <?php if ($customerID != 0) {
+                            echo "&customerID={$customerID}&orderCode={$orderCode}";}?>" >
                                         <?php echo $row['productName'] ?>     
                                     </a></h2>
                                     <div class="product-wid-rating">
@@ -385,15 +401,18 @@ while($row = $a2->fetch_assoc()) {
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Top New</h2>
-                        <a class="wid-view-more" href=<?php echo "shop.php?customerID={$customerID}&orderCode={$orderCode}" ?>>View All</a>
+                        <a class="wid-view-more" href=<?php echo "shop.php?"?> <?php if ($customerID != 0) {
+                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>>View All</a>
                         <?php include "product.php" ?>
                         <?php while($row = $result->fetch_assoc()) { ?>
                             <?php if($row['productID']>3 and $row['productID'] <7) { ?>
                                 <div class="single-wid-product">
-                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" >
+                                    <a href="<?php echo "single-product.php?myNumber={$row['productID']}"?> <?php if ($customerID != 0) {
+                            echo "&customerID={$customerID}&orderCode={$orderCode}";}?>" >
                                         <img src="<?php echo "img/p".$row['productID']."-1.png" ?>" alt="" class="product-thumb">
                                     </a>
-                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}&customerID={$customerID}&orderCode={$orderCode}" ?>" ><?php echo $row['productName'] ?></a></h2>
+                                    <h2><a href="<?php echo "single-product.php?myNumber={$row['productID']}"?> <?php if ($customerID != 0) {
+                            echo "&customerID={$customerID}&orderCode={$orderCode}";}?>" ><?php echo $row['productName'] ?></a></h2>
                                     <div class="product-wid-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>

@@ -21,7 +21,8 @@
                     SET orderDate = NOW(), quantityOrdered = $quantity + $quantity1
                     WHERE orderCode = $orderCode and customerId = $customerId and productId = $productId";
             $q2 = $con->query($q1);
-            ?> <meta http-equiv="refresh" content="0;url=<?php echo "cart.php?customerID={$customerId}&orderCode={$orderCode}" ?>"> <?php
+            ?> <meta http-equiv="refresh" content="0;url=<?php echo "cart.php?"?> <?php if ($customerID != 0) {
+                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>"> <?php
         }
     }
 
@@ -29,7 +30,8 @@
         $q1 = "INSERT INTO orders (orderCode , customerID,  productID, orderDate, quantityOrdered)
                VALUES ('$orderCode' , '$customerId' ,'$productId', NOW(), '$quantity')";
         $q2 = $con->query($q1);
-        ?> <meta http-equiv="refresh" content="0;url=<?php echo "cart.php?customerID={$customerId}&orderCode={$orderCode}" ?>"> <?php
+        ?> <meta http-equiv="refresh" content="0;url=<?php echo "cart.php?"?> <?php if ($customerID != 0) {
+                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>"> <?php
     }
 
 
