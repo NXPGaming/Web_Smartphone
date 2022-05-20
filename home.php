@@ -1,6 +1,10 @@
 
 <?php
 include("product.php");
+$orderCode = 0;
+$customerID = 0;
+$total = 0;
+if (!empty($_GET['orderCode'])) {
 $orderCode = $_GET['orderCode'];
 $customerID = $_GET['customerID'];
 
@@ -11,11 +15,11 @@ if(!$con){
 $a1 = "SELECT * from orders, (SELECT productID, productName, buyPrice from products) as product 
        WHERE product.productID = orders.productID and orders.orderCode = $orderCode and orders.customerID = $customerID";
 $a2 = $con->query($a1);
-$total = 0;
 $numProduct = 0;
 while($row = $a2->fetch_assoc()) {
     $total += $row['buyPrice']*$row['quantityOrdered'];
     $numProduct += 1;
+}
 }
 
 ?>
