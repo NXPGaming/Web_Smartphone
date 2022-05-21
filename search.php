@@ -8,7 +8,7 @@ if(!$con){
     die('Could not Connect MySql Server:' .mysql_error());
 }
 $a1 = "SELECT * from orders, (SELECT productID, productName, buyPrice from products) as product 
-       WHERE product.productID = orders.productID and orders.orderCode = $orderCode and orders.customerID = $customerID";
+       WHERE product.productID = orders.productID and orders.customerID = $customerID";
 $a2 = $con->query($a1);
 $total = 0;
 $numProduct = 0;
@@ -131,14 +131,26 @@ while($row = $a2->fetch_assoc()) {
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href=<?php echo "home.php?"?> <?php if ($customerID != 0) {
-                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>>Home</a></li>
-                        <li class="active"><a href=<?php echo "shop.php?"?> <?php if ($customerID != 0) {
-                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>>Shop page</a></li>
-                        <li><a href=<?php echo "cart.php?"?> <?php if ($customerID != 0) {
-                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>>Cart</a></li>
-                        <li><a href=<?php echo "checkout.php?"?> <?php if ($customerID != 0) {
-                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>>Checkout</a></li>
+                        <li><a href=<?php $s = "home.php?";
+                        if ($customerID != 0) {
+                            $s .= "customerID={$customerID}&orderCode={$orderCode}";}
+                        echo $s;
+                        ?>>Home</a></li>
+                        <li class="active"><a href=<?php $s =  "shop.php?";
+                        if ($customerID != 0) {
+                            $s .= "customerID={$customerID}&orderCode={$orderCode}";}
+                        echo $s;
+                        ?>>Shop page</a></li>
+                        <li><a href=<?php $s = "cart.php?";
+            if ($customerID != 0) {
+                $s .= "customerID={$customerID}&orderCode={$orderCode}";}
+            echo $s;
+            ?>>Cart</a></li>
+                        <li><a href=<?php $s =  "checkout.php?";
+                            if ($customerID != 0) {
+                                $s .= "customerID={$customerID}&orderCode={$orderCode}";}
+                            echo $s;
+                            ?>>Checkout</a></li>
                         <li><a href="contact.php">My team</a></li>
                     </ul>
                     <div class="shopping-item" style="padding: 0px; border: 0px; margin-top: 6px;">

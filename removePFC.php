@@ -10,8 +10,11 @@
     $sql = "DELETE FROM orders WHERE orderCode = $orderCode AND customerID = $customerID AND productID = $productID";
     $result = $con->query($sql);
     ?> 
-    <meta http-equiv="refresh" content="0;url=<?php echo "cart.php?"?> <?php if ($customerID != 0) {
-                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>"> 
+    <meta http-equiv="refresh" content="0;url=<?php $s = "cart.php?";
+            if ($customerID != 0) {
+                $s .= "customerID={$customerID}&orderCode={$orderCode}";}
+            echo $s;
+            ?>"> 
     <?php
 ?>
 

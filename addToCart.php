@@ -3,7 +3,10 @@
     if(!$con){
         die('Could not Connect MySql Server:' .mysql_error());
     }
-      
+    if (empty($_GET['customerID'])) {?>
+        <meta http-equiv="refresh" content="0;url='<?php echo "login.php";
+    }      ?>'"> <?php
+    if (!empty($_GET['customerID'])) {
     $orderCode = $_GET['orderCode'];
     $customerId = $_GET['customerID'];
     $quantity =  $_REQUEST['quantity'];
@@ -21,8 +24,12 @@
                     SET orderDate = NOW(), quantityOrdered = $quantity + $quantity1
                     WHERE orderCode = $orderCode and customerId = $customerId and productId = $productId";
             $q2 = $con->query($q1);
-            ?> <meta http-equiv="refresh" content="0;url=<?php echo "cart.php?"?> <?php if ($customerID != 0) {
-                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>"> <?php
+            ?> 
+            <meta http-equiv="refresh" content="0;url='<?php $s = "cart.php?";
+            if ($customerId != 0) {
+                $s .= "customerID={$customerId}&orderCode={$orderCode}";}
+            echo $s;
+            ?>'"> <?php
         }
     }
 
@@ -30,12 +37,15 @@
         $q1 = "INSERT INTO orders (orderCode , customerID,  productID, orderDate, quantityOrdered)
                VALUES ('$orderCode' , '$customerId' ,'$productId', NOW(), '$quantity')";
         $q2 = $con->query($q1);
-        ?> <meta http-equiv="refresh" content="0;url=<?php echo "cart.php?"?> <?php if ($customerID != 0) {
-                            echo "customerID={$customerID}&orderCode={$orderCode}";}?>"> <?php
+        ?> <meta http-equiv="refresh" content="0;url='<?php $s = "cart.php?";
+            if ($customerId != 0) {
+                $s .= "customerID={$customerId}&orderCode={$orderCode}";}
+            echo $s;
+            ?>'"> <?php
     }
 
 
-    mysqli_close($con);
+    mysqli_close($con);}
 ?>
 
 
